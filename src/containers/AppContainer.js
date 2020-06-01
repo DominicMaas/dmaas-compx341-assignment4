@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import fetch from 'isomorphic-unfetch'
 import CityResponse from '../components/CityResponse';
 import City from '../components/City';
+import MapContainer from '../components/MapContainer';
 
 function AppContainer(props) {
 
@@ -19,18 +20,27 @@ function AppContainer(props) {
     }
 
     return (
-        <div>
-            <div className="row mt-4">
-                <div className="col-sm-4"></div>
-                <City onCityChange={handleCityChange} clearResponse={clearResponse}/>
-                <div className="col-sm-4"></div>
-            </div>
-            <div className="row mt-4">
-                <div className="col-sm-2"></div>
-                <CityResponse responseData={responseData} clearResponse={clearResponse}/>
-                <div className="col-sm-2"></div>
-            </div>    
+      <div>
+        <div className="row mt-4">
+          <div className="col-sm-4"></div>
+          <City onCityChange={handleCityChange} clearResponse={clearResponse} />
+          <div className="col-sm-4"></div>
         </div>
+        <div className="row mt-4">
+          <div className="col-sm-2"></div>
+          <CityResponse
+            responseData={responseData}
+            clearResponse={clearResponse}
+          />
+          <div className="col-sm-2"></div>
+        </div>
+        <div className="row mt-2">
+          <MapContainer
+            onCityChange={handleCityChange}
+            responseData={responseData}
+          />
+        </div>
+      </div>
     );
 }
   
