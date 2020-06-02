@@ -15,6 +15,13 @@ function AppContainer(props) {
         setResponseData(json);
     }
 
+    const handleMapClickChange = async (lat, lon) => {
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=6b7b471967dd0851d0010cdecf28f829&units=metric&lat=${lat}&lon=${lon}`)
+      const json = await res.json()
+
+      setResponseData(json);
+    }
+
     const clearResponse = () => {
         setResponseData('');
     }
@@ -36,7 +43,7 @@ function AppContainer(props) {
         </div>
         <div className="row mt-2">
           <MapContainer
-            onCityChange={handleCityChange}
+            onMapClick={handleMapClickChange}
             responseData={responseData}
           />
         </div>
