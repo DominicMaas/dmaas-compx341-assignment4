@@ -4,8 +4,8 @@ function AppHeader({ children }) {
 
     return (
         <nav className="navbar navbar-dark bg-dark shadow-lg">
-            <div class="container">
-                <span class="navbar-brand mb-0 h1">NZ Weather Searcher</span>
+            <div className="container">
+                <span className="navbar-brand mb-0 h1">NZ Weather Searcher</span>
 
                 {children}
             </div>
