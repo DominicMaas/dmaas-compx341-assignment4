@@ -1,10 +1,16 @@
 import React from 'react';
 
-function AppHeader() {
+function AppHeader({ children }) {
 
-    return <div>
-        <p className="p-3 text-light h3 bg-primary">Current weather by New Zealand city</p>
-    </div>
+    return (
+        <nav className="navbar navbar-dark bg-dark shadow-lg">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1">NZ Weather Searcher</span>
+
+                {children}
+            </div>
+        </nav>
+    );
 }
   
 export default AppHeader

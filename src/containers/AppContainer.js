@@ -1,54 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import fetch from 'isomorphic-unfetch'
-import CityResponse from '../components/CityResponse';
-import City from '../components/City';
-import MapContainer from '../components/MapContainer';
+import AppHeader from '../components/AppHeader'
+import CityResponse from '../components/CityResponse'
+import City from '../components/City'
+import MapContainer from '../components/MapContainer'
 
 function AppContainer(props) {
 
-    const [responseData, setResponseData] = useState('');
+    const [responseData, setResponseData] = useState('')
 
     const handleCityChange = async (cityValue) => {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=6b7b471967dd0851d0010cdecf28f829&units=metric&q=${cityValue},nz`)
-        const json = await res.json()
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=6b7b471967dd0851d0010cdecf28f829&units=metric&q=${cityValue},nz`)
+      const json = await res.json()
         
-        setResponseData(json);
+      setResponseData(json);
     }
 
     const handleMapClickChange = async (lat, lon) => {
       const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=6b7b471967dd0851d0010cdecf28f829&units=metric&lat=${lat}&lon=${lon}`)
       const json = await res.json()
 
-      setResponseData(json);
+      setResponseData(json)
     }
 
     const clearResponse = () => {
-        setResponseData('');
+      setResponseData('')
     }
 
     return (
-      <div>
-        <div className="row mt-4">
-          <div className="col-sm-4"></div>
+      <>
+        <AppHeader>
           <City onCityChange={handleCityChange} clearResponse={clearResponse} />
-          <div className="col-sm-4"></div>
-        </div>
-        <div className="row mt-4">
-          <div className="col-sm-2"></div>
-          <CityResponse
-            responseData={responseData}
-            clearResponse={clearResponse}
-          />
-          <div className="col-sm-2"></div>
-        </div>
-        <div className="row mt-2">
-          <MapContainer
-            onMapClick={handleMapClickChange}
-            responseData={responseData}
-          />
-        </div>
-      </div>
-    );
+        </AppHeader>
+
+        <MapContainer
+          onMapClick={handleMapClickChange}
+          responseData={responseData}
+        />
+
+        <CityResponse
+          responseData={responseData}
+          clearResponse={clearResponse}
+        />
+      </>
+    )
 }
   
 export default AppContainer

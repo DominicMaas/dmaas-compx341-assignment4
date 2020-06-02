@@ -1,6 +1,12 @@
 import React from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
+const containerStyle = {
+  position: 'absolute',
+  width: '100%',
+  height: '100%'
+}
+
 function MapContainer(props) {
   // If the marker should be shown
   let showMarker = true;
@@ -25,6 +31,7 @@ function MapContainer(props) {
   // Only render the marker if we have coords
   return (
     <Map
+      containerStyle={containerStyle}
       google={props.google}
       initialCenter={{
         lat: initialCenter.lat,

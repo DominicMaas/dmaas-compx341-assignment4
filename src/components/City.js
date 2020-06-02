@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function City(props) {
 
     const [validationError, setValidationError] = useState(null);
+    const [text, setText] = useState(null);
 
     const validate = (event) => { 
         const city = event.target.value.trim();
@@ -21,15 +22,16 @@ function City(props) {
                 <div className="col-sm-10">
                     <style jsx="true">{`
                         .form-control::-webkit-input-placeholder {
-                            color: #ddd;
+                            color: #aaa;
                         }
                     `}
                     </style>
                     <input 
                         type="text" 
+                        text={text}
                         className="form-control" 
                         id="usr" 
-                        placeholder="New Zealand City Name"
+                        placeholder="Enter city name..."
                         onKeyPress={(event) => {
                             if (event.key === "Enter") {
                                 validate(event);
